@@ -1,0 +1,10 @@
+--- tools/env/fw_env.c.bak	2017-03-26 12:35:55.832459853 -0700
++++ tools/env/fw_env.c	2017-03-26 12:33:56.659727926 -0700
+@@ -8,6 +8,7 @@
+  * SPDX-License-Identifier:	GPL-2.0+
+  */
+ 
++#include <stdint.h>
+ #include <errno.h>
+ #include <env_flags.h>
+ #include <fcntl.h>

@@ -29,6 +29,7 @@ src_unpack() {
 src_prepare() {
     #epatch "${FILESDIR}"/000_change_abi.patch
     epatch "${FILESDIR}"/010-use-qemu.patch
+    epatch "${FILESDIR}"/020-add-stdint.patch
 	true
 }
 
@@ -49,7 +50,7 @@ src_compile() {
 
 src_install() {
     cd build/tools
-    dobin bmp_logo easylogo/easylogo env/fw_printenv gen_eth_addr img2srec inca-swap-bytes mkimage ncb ubsha1 uclpack
+    dobin bmp_logo easylogo/easylogo env/fw_printenv gen_eth_addr img2srec mkimage ncb ubsha1
 
     cd ../..
     dodir /opt/hardkernel
