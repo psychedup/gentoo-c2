@@ -37,7 +37,7 @@ src_compile() {
         HOSTSTRIP=: \
         HOSTCC="$(tc-getCC)" \
         HOSTCFLAGS="${CFLAGS} ${CPPFLAGS}"' $(HOSTCPPFLAGS)' \
-        odroidc_config
+        odroidc2_config
     emake
     emake tools-all
 }
