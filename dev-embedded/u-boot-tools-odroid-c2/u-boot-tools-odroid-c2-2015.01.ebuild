@@ -18,12 +18,17 @@ LICENSE="GPL-2"
 
 KEYWORDS="~arm64"
 
+RDEPEND="
+	app-emulation/qemu[qemu_user_targets_x86_64,static-user]
+	"
+
 src_unpack() {
     git-r3_src_unpack
 }
 
 src_prepare() {
     #epatch "${FILESDIR}"/000_change_abi.patch
+    epatch "${FILESDIR}"/010-use-qemu.patch
 	true
 }
 
