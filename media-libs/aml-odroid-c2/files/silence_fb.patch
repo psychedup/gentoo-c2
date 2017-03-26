@@ -1,0 +1,73 @@
+diff --git a/amcodec/codec/codec_ctrl.c b/amcodec/codec/codec_ctrl.c
+index 9985eab..d21cbb5 100644
+--- a/amcodec/codec/codec_ctrl.c
++++ b/amcodec/codec/codec_ctrl.c
+@@ -697,37 +697,6 @@ int codec_init(codec_para_t *pcodec)
+     //if(pcodec->has_audio)
+     //  audio_stop();
+     
+-    int fd_m;
+-    struct fb_var_screeninfo info;
+-    
+-    fd_m = open("/dev/fb0", O_RDWR);
+-    
+-    if(ioctl(fd_m, FBIOGET_VSCREENINFO, &info) == -1) {
+-		printf("CODEC ERROR -14\n");
+-		return -1;
+-	}
+-	
+-    info.reserved[0] = 0;
+-    info.reserved[1] = 0;
+-    info.reserved[2] = 0;
+-    info.xoffset = 0;
+-    info.yoffset = 0;
+-    info.activate = FB_ACTIVATE_NOW;
+-    info.bits_per_pixel = 32;
+-    info.red.offset = 16;
+-    info.red.length = 8;
+-    info.green.offset = 8;
+-    info.green.length = 8;
+-    info.blue.offset = 0;
+-    info.blue.length = 8;
+-    info.transp.offset = 24;
+-    info.transp.length = 8; 
+-    info.nonstd = 1;
+-    info.yres_virtual = info.yres * 2;
+-    ioctl(fd_m, FBIOPUT_VSCREENINFO, &info);	
+-    close(fd_m);
+-    
+-    
+     pcodec->handle = -1;
+     pcodec->cntl_handle = -1;
+     pcodec->sub_handle = -1;
+@@ -870,30 +839,6 @@ int codec_read(codec_para_t *pcodec, void *buffer, int len)
+ int codec_close(codec_para_t *pcodec)
+ {	
+     int res = 0;
+-    
+-    int fd_m;
+-    struct fb_var_screeninfo info;
+-    
+-    fd_m = open("/dev/fb0", O_RDWR);
+-    ioctl(fd_m, FBIOGET_VSCREENINFO, &info);
+-    info.reserved[0] = 0;
+-    info.reserved[1] = 0;
+-    info.reserved[2] = 0;
+-    info.xoffset = 0;
+-    info.yoffset = 0;
+-    info.activate = FB_ACTIVATE_NOW;
+-    info.red.offset = 16;
+-    info.red.length = 8;
+-    info.green.offset = 8;
+-    info.green.length = 8;
+-    info.blue.offset = 0;
+-    info.blue.length = 8;
+-    info.transp.offset = 24;
+-    info.transp.length = 0;
+-    info.nonstd = 1;
+-    info.yres_virtual = info.yres * 2;
+-    ioctl(fd_m, FBIOPUT_VSCREENINFO, &info);	
+-    close(fd_m);
+ 
+     if (pcodec->has_audio) {
+         audio_stop(&pcodec->adec_priv);
