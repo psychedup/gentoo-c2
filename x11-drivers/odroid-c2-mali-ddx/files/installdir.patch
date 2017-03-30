@@ -1,0 +1,10 @@
+--- src/Makefile.old	2016-06-15 10:13:42.239758336 -0700
++++ src/Makefile	2016-06-15 10:14:15.030491498 -0700
+@@ -621,7 +621,7 @@
+ install-dvi-am:
+ 
+ install-exec-am:
+-	-cp xorg.conf /etc/X11/xorg.conf
++	-cp xorg.conf ${DESTDIR}/etc/X11/xorg.conf
+ 
+ install-html: install-html-am

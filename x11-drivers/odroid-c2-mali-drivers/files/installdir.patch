@@ -1,0 +1,19 @@
+--- Makefile.old	2016-06-14 23:08:51.114229262 -0700
++++ Makefile	2016-06-14 23:09:05.804561796 -0700
+@@ -1,5 +1,5 @@
+-libdir := /usr/lib/aarch64-linux-gnu
+-includedir := /usr/include
++libdir := ${D}/usr/lib64
++includedir := ${D}/usr/include
+ pkgconfigdir := $(libdir)/pkgconfig
+ 
+ install:
+@@ -11,7 +11,7 @@
+ 	
+ 	# Mali Headers
+ 	rm -rf $(includedir)/EGL $(includedir)/GLES $(includedir)/GLES2 $(includedir)/ump $(includedir)/umplock
+-	cp -aRP mali_headers/* /usr/include
++	cp -aRP mali_headers/* ${D}/usr/include
+ 	
+ 	# PKG Config
+ 	rm -fr $(pkgconfigdir)/glesv*.pc $(pkgconfigdir)/egl.pc
