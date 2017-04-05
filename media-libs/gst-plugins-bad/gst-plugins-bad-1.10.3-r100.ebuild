@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-# modified to allow odroid-c2-mali-drivers instead of mesa[gles2]
+# modified to allow odroid-c2-mali-drivers instead of mesa[egl,gles2]
 
 EAPI=6
 GST_ORG_MODULE="gst-plugins-bad"
@@ -29,7 +29,7 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1:= )
 
 	bzip2? ( >=app-arch/bzip2-1.0.6-r4[${MULTILIB_USEDEP}] )
-	egl? ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] )
+	egl? ( || ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] x11-drivers/odroid-c2-mali-drivers ) )
 	gles2? ( || ( >=media-libs/mesa-9.1.6[gles2,${MULTILIB_USEDEP}] x11-drivers/odroid-c2-mali-drivers ) )
 	opengl? (
 		>=media-libs/mesa-9.1.6[${MULTILIB_USEDEP}]
